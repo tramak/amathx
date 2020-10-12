@@ -11,6 +11,27 @@
   font-size: 14px;
 }
 
+#keyboardContent {
+  position: relative;
+  margin: 0 -10px -10px;
+}
+
+#keyboardContent .ML__keyboard {
+  position: relative;
+  width: 100%;
+  box-shadow: none;
+  border: 0;
+  transition: none;
+  display: none;
+}
+
+#keyboardContent .ML__keyboard.is-visible {
+  display: block;
+}
+
+
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

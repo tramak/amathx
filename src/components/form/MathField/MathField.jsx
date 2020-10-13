@@ -23,11 +23,14 @@ const MathField = ({ type }) => {
     }
 
     const configKeyboard = keyboards[type || 'def'];
+    const keyboardContent = document.getElementById('keyboardContent');
+    const sep = document.getElementById('sep');
+    const app = document.getElementById('app');
     const mf = MathLive.makeMathField(field.current, {
         smartFence: true,
         smartMode: true,
         virtualKeyboardMode: 'onfocus',
-        toDOMElement: document.getElementById('keyboardContent'),
+        toDOMElement: keyboardContent,
         ...configKeyboard,
         onContentDidChange: (mf) => {
           const latex = mf.$text();
@@ -40,6 +43,24 @@ const MathField = ({ type }) => {
           //       JSON.stringify(mathJSON)
           //  );
         },
+        onVirtualKeyboardToggle: (sender, visible, keyboardElement) => {
+            return;
+            if (!visible) {
+                sep.style.height = 0;
+            }
+
+            setTimeout(() => {
+                if (visible) {
+                    sep.style.height = `${keyboardElement.offsetHeight}px`;
+
+                    console.log({ sender, visible, keyboardElement }, {
+                        elemRect: sender.element.getBoundingClientRect(),
+                        appRect: app.getBoundingClientRect(),
+                        scrollTop: app.scrollTop,
+                    });
+                }
+            });
+        }
     });
   }, [field]);
 

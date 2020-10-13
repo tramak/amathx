@@ -24,6 +24,7 @@ const MathField = ({ type }) => {
 
     const configKeyboard = keyboards[type || 'def'];
     const mf = MathLive.makeMathField(field.current, {
+        smartFence: true,
         smartMode: true,
         virtualKeyboardMode: 'onfocus',
         toDOMElement: document.getElementById('keyboardContent'),
@@ -44,7 +45,7 @@ const MathField = ({ type }) => {
 
   return (
     <div className="input-mathfield">
-      <div ref={field} />
+      <div ref={field}  className="mathfield" id="mf" tabIndex='0' />
       <div id="latex" />
       <div id="result" />
       <div id="output" />

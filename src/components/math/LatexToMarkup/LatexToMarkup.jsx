@@ -17,7 +17,6 @@ const LatexToMarkup = () => {
     elems.forEach(elem => {
       MathLive.makeMathField(elem);
     });
-    console.log({ elems });
   }, [ref]);
   return <div ref={ref} dangerouslySetInnerHTML={{ __html: text }} />
 };

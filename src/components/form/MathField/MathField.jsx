@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import MathLive from "mathlive";
+import MathLive from 'mathlive';
 
 import * as keyboards from './keyboard';
 import './mathfield.css';

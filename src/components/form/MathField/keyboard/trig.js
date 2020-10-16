@@ -22,18 +22,25 @@ export default {
       rows: [
         [
           {
-            class: '', // class для кнопки, также есть зарезервированные класс '.keycap, .action, .fnbutton, .bigfnbutton', которые делают дополнительную магию
             key: '',
+            altKeys: '',
+            // class для кнопки, также есть зарезервированные класс '.keycap, .action, .fnbutton, .bigfnbutton', которые делают дополнительную магию
+            class: 'bigfnbutton',
             // Ввод команд например удалить последний символ command: ['performWithFeedback', 'deletePreviousChar']
             // Переключится на альтернативню клавиатуру command: ['toggleVirtualKeyboardAlt']
-            command: '',
-            insert: '',
-            latex: '',
-            aside: '', // оборачиват тегом <aside> контент кнопки
-            altKeys: '',
-            shifted: '',
-            shiftedCommand: '',
-            label: '' // Текст кнопки innerHTML, но если стоит зарезервированный класс, то innerHTML будет браться из latex, insert, content
+            command: ['performWithFeedback', 'deletePreviousChar'],
+            // Команда которая будет вставленна когда будет нажата кнопка
+            insert: '$$\\operatorname{arcsin}\\left( #0 \\right)$$',
+            // Latex оператор который будет отображаться на кнопке и при вставке в поле ввода
+            latex: '\\operatorname{arcsin}',
+            // Добавляем к контенту кнопки тег <aside> и вставляем туда содержимое
+            aside: 'доп. инф.',
+            // Используется для вставки svg символов на кнопку
+            shifted: '<svg><use xlink:href="#svg-angle-double-right" /></svg>',
+            // Команда которая будет выполненна когда произойдёт нажатие на кнопку с символом из shifted
+            shiftedCommand: ['toggleVirtualKeyboardAlt'],
+            // Текст кнопки innerHTML, но если стоит зарезервированный класс, то innerHTML будет браться из latex, insert, content
+            label: '<img src="https://..." width="20" height="20" />'
           },
           {
             class: 'action',
@@ -41,14 +48,16 @@ export default {
             label: '&#x232b;'
           },
           {
-            class: '',
-            insert: '$$\\operatorname{sin}(#?)$$',
+            class: 'bigfnbutton',
+            // insert: '$$\\operatorname{sin}(#?)$$',
+            command: ['insert', '$$\\operatorname{sin}\\left( #0 \\right)$$'],
             label: imgL
           },
           {
             class: 'bigfnbutton',
-            insert: '$$\\operatorname{arcsin}(#?)$$',
-            latex: '\\operatorname{arcsin}'
+            insert: '$$\\operatorname{arcsin}\\left( #0 \\right)$$',
+            latex: 'arcsin',
+            aside: 'доп. инф.',
           },
           {
             class: 'bigfnbutton',
@@ -57,8 +66,8 @@ export default {
           },
           {
             class: 'bigfnbutton',
-            insert: '$$\\operatorname{arccos}(#?)$$',
-            latex: '\\operatorname{arccos}'
+            insert: '$$\\operatorname{arcsin}\\left( #0 \\right)$$',
+            shifted: '<svg><use xlink:href="#svg-angle-double-right" /></svg>',
           },
           {
             class: 'bigfnbutton',

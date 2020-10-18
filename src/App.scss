@@ -1,3 +1,5 @@
+@import "scss/media";
+
 .app-wrap {
   border: solid 1px #ccc;
   margin: 10px auto;
@@ -10,6 +12,14 @@
   overflow-y: scroll;
   padding: 10px;
   max-height: 600px;
+
+  @include media(0, $screenLg) {
+    background: red;
+  }
+
+  @include mediaZr {
+    background: green;
+  }
 }
 
 .question {

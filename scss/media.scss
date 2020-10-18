@@ -1,0 +1,37 @@
+@import "./vars";
+
+@mixin media($min, $max) {
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin mediaZr {
+  @include media(0, $screenSm) {
+    @content;
+  }
+}
+
+@mixin mediaSm {
+  @include media($screenSm, $screenMd) {
+    @content;
+  }
+}
+
+@mixin mediaMd {
+  @include media($screenMd, $screenLg) {
+    @content;
+  }
+}
+
+@mixin mediaLg {
+  @include media($screenLg, $screenEx) {
+    @content;
+  }
+}
+
+@mixin mediaEx {
+  @media (min-width: $screenEx) {
+    @content;
+  }
+}

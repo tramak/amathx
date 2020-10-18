@@ -14,11 +14,12 @@ const LatexToMarkup = () => {
     }
 
     const elems = ref.current.querySelectorAll('.mathfield');
-    elems.forEach(elem => {
+    Array.prototype.forEach.call(elems, elem => {
       MathLive.makeMathField(elem);
     });
   }, [ref]);
-  return <div ref={ref} dangerouslySetInnerHTML={{ __html: text }} />
+
+  return <div ref={ref} dangerouslySetInnerHTML={{ __html: text }} />;
 };
 
 export default LatexToMarkup;

@@ -1,0 +1,43 @@
+.input-mathfield {
+  border: solid 1px #cc9966;
+  margin: 10px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.ML__keyboard {
+  .keyboard-layer {
+    margin: 0 9px;
+
+    div.keyboard-toolbar {
+      width: 100%;
+    }
+
+    div.rows {
+      align-items: flex-start;
+      margin: 0;
+
+      > ul {
+        height: auto;
+        margin: 0 0 9px 0;
+
+        > li.keyboard__btn-st {
+          background: #42B0FF;
+          border: 1px solid #0691F5;
+          box-sizing: border-box;
+          border-radius: 5px;
+          width: 30px;
+          height: 30px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 14px;
+          line-height: 10px;
+          color: #FFFFFF;
+
+          span {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

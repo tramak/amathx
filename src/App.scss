@@ -1,7 +1,7 @@
 @import "scss/media";
 
 .app-wrap {
-  border: solid 1px #ccc;
+  //border: solid 1px #ccc;
   margin: 10px auto;
   max-width: 600px;
   position: relative;
@@ -9,9 +9,9 @@
 
 .app {
   text-align: left;
-  overflow-y: scroll;
   padding: 10px;
-  max-height: 600px;
+  //overflow-y: scroll;
+  //max-height: 600px;
 
   @include media(0, $screenLg) {
     background: red;
@@ -33,12 +33,14 @@
 }
 
 #keyboardContent .ML__keyboard {
-  background: rgba(209,213,217,0.8);
+  background: #FAFAFA;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
   position: relative;
   width: 100%;
   /*width: calc(100% - 7px);*/
-  box-shadow: none;
-  border: 0;
+  //box-shadow: none;
+  //border: 0;
   /*transition: none;*/
   display: none;
 }

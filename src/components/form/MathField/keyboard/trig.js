@@ -1,7 +1,7 @@
 // import { register } from 'mathlive/src/editor/commands';
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(i => ({
-  class: 'keycap',
+  class: 'keycap keyboard__btn-st',
   insert: `${i}`,
 }));
 

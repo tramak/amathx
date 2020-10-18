@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import MathLive from 'mathlive';
 
 import keyboards, { KeyboardsType } from './keyboard';
-import './mathfield.css';
+import './mathfield.scss';
 
 // interface MathFieldProps {
 //   type: keyof KeyboardsType;

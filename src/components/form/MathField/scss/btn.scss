@@ -1,0 +1,50 @@
+.keyboard__btn-primary,
+.keyboard__btn-light,
+.keyboard__btn-warning,
+.keyboard__btn-success {
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  line-height: 12px;
+  font-size: 14px;
+  list-style: none;
+  margin-left: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  span {
+    cursor: pointer;
+  }
+}
+
+.keyboard__btn-primary {
+  background: #42B0FF;
+  border: 1px solid #0691F5;
+  color: #FFFFFF;
+}
+
+.keyboard__btn-light {
+  background: #FFFFFF;
+  border: 1px solid #DFDFDF;
+  color: #000000;
+}
+
+.keyboard__btn-warning {
+  background: #FFD542;
+  border: 1px solid #FFC90C;
+  color: #FFFFFF;
+}
+
+.keyboard__btn-success {
+  background: #29B91D;
+  border: 1px solid #027700;
+  color: #FFFFFF;
+}

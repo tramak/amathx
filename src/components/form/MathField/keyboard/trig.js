@@ -1,5 +1,7 @@
 // import { register } from 'mathlive/src/editor/commands';
 
+import makeKeyboard from './util/makeKeyboard';
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(i => ({
   class: 'keycap keyboard__btn-st',
   insert: `${i}`,
@@ -7,15 +9,17 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(i => ({
 
 const imgL = '<img src="https://s.gravatar.com/avatar/367c8569e12fca21d48669e0fa0e7afb?size=496&default=retro" width="20" height="20" />';
 
+
 export default {
   customVirtualKeyboardLayers: {
-    'number': {
-      rows: [
-        [
-          ...numbers
-        ],
-      ],
-    },
+    // 'number': {
+    //   rows: [
+    //     [
+    //       ...numbers
+    //     ],
+    //   ],
+    // },
+    'number': makeKeyboard(),
     'trig': {
       backdrop: 'class__backdrop', // класс обёртка над контеинером с клавиатурой
       container: 'class__container', // класс обёртка над контеинером с клавиатурой

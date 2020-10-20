@@ -1,3 +1,5 @@
+@import "./scss/btn";
+
 .input-mathfield {
   border: solid 1px #cc9966;
   margin: 10px;
@@ -6,6 +8,8 @@
 }
 
 .ML__keyboard {
+  font-family: 'Roboto', sans-serif;
+
   .keyboard-layer {
     margin: 0 9px;
 
@@ -16,28 +20,56 @@
     div.rows {
       align-items: flex-start;
       margin: 0;
+      cursor: default;
 
       > ul {
         height: auto;
         margin: 0 0 9px 0;
-
-        > li.keyboard__btn-st {
-          background: #42B0FF;
-          border: 1px solid #0691F5;
-          box-sizing: border-box;
-          border-radius: 5px;
-          width: 30px;
-          height: 30px;
-          font-family: 'Roboto', sans-serif;
-          font-size: 14px;
-          line-height: 10px;
-          color: #FFFFFF;
-
-          span {
-            cursor: pointer;
-          }
-        }
       }
     }
   }
+}
+
+.keyboard__row-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.keyboard__list {
+  margin: 0 0 9px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.keyboard__title {
+  font-size: 8px;
+  line-height: 21px;
+  color: #C5C5C5;
+  margin: 0;
+}
+
+.keyboard__still,
+.keyboard__rollup {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  font-size: 8px;
+  width: 50px;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.keyboard__still {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+.keyboard__rollup {
+  background: #FF5A5A;
+  color: #FFFFFF;
 }

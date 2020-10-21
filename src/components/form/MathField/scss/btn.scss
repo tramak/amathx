@@ -1,3 +1,6 @@
+@import "../../../../scss/media";
+
+.keyboard__btn-empty,
 .keyboard__btn-primary,
 .keyboard__btn-light,
 .keyboard__btn-warning,
@@ -23,6 +26,11 @@
   span {
     cursor: pointer;
   }
+}
+
+.keyboard__btn-empty {
+  background: transparent;
+  border: 1px solid transparent;
 }
 
 .keyboard__btn-primary {

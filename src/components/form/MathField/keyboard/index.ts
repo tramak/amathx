@@ -1,6 +1,7 @@
 import number from './number';
 import number2 from './number2';
 import def from './def';
+import myKeyboard from './myKeyboard';
 import other from './other';
 import trig from './trig';
 
@@ -12,6 +13,7 @@ const keyboards: KeyboardsType = {
   number,
   number2,
   def,
+  myKeyboard,
   other,
   trig
 };

@@ -1,6 +1,6 @@
 // import { register } from 'mathlive/src/editor/commands';
 
-import makeKeyboard from './util/makeKeyboard';
+import makeKeyboard from './util/makeKeyboard2';
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(i => ({
   class: 'keycap keyboard__btn-st',
@@ -19,7 +19,7 @@ export default {
     //     ],
     //   ],
     // },
-    'number': makeKeyboard(),
+    // 'number': makeKeyboard(),
     'trig': {
       backdrop: 'class__backdrop', // класс обёртка над контеинером с клавиатурой
       container: 'class__container', // класс обёртка над контеинером с клавиатурой

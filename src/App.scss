@@ -13,46 +13,19 @@
   //overflow-y: scroll;
   //max-height: 600px;
 
-  @include media(0, $screenLg) {
-    background: red;
-  }
-
-  @include mediaZr {
-    background: green;
-  }
+  //@include media(0, $screenLg) {
+  //  background: red;
+  //}
+  //
+  //@include mediaZr {
+  //  background: green;
+  //}
 }
 
 .question {
   padding: 16px 0 0 0;
   font-size: 14px;
 }
-
-#keyboardContent {
-  /*position: relative;*/
-  /*margin: 0 20px;*/
-}
-
-#keyboardContent .ML__keyboard {
-  background: #FAFAFA;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  position: relative;
-  width: 100%;
-  /*width: calc(100% - 7px);*/
-  //box-shadow: none;
-  //border: 0;
-  /*transition: none;*/
-  display: none;
-}
-
-#keyboardContent .ML__keyboard.is-visible {
-  display: block;
-}
-
-#keyboardContent .keyboard-toolbar {
-  /*display: none;*/
-}
-
 
 
 

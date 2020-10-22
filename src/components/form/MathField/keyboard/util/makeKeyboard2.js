@@ -97,21 +97,27 @@ function makeKeyboardLayer(keyboardLayer) {
   return tempLayer;
 }
 
-// export default function makeKeyboard() {
-//   return makeKeyboardLayer(config.customVirtualKeyboardLayers.baselayer);
-// }
-
-export default function makeKeyboard(config) {
+function makeKeyboardItem(config) {
   const customVirtualKeyboardLayers = Object
     .entries(config.customVirtualKeyboardLayers)
     .reduce((newConfig, [key, value]) => ({
-      ...newConfig.customVirtualKeyboardLayers,
+      ...newConfig,
       [key]: makeKeyboardLayer(value)
     }), {});
 
   return {
     ...config,
     customVirtualKeyboardLayers
+  };
+}
+
+export default function makeKeyboard(config) {
+  const desk = makeKeyboardItem(config.desk);
+  const mobile = makeKeyboardItem(config.mobile);
+
+  return {
+    desk,
+    mobile
   };
 }
 

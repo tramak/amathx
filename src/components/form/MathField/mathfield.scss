@@ -3,9 +3,36 @@
 .input-mathfield {
   border: solid 1px #cc9966;
   margin: 10px;
-  padding-left: 10px;
+  //padding-left: 10px;
   font-size: 20px;
 }
+
+.keyboard-content {
+  /*position: relative;*/
+  /*margin: 0 20px;*/
+}
+
+.keyboard-content .ML__keyboard {
+  background: #FAFAFA;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  position: relative;
+  width: 100%;
+  /*width: calc(100% - 7px);*/
+  //box-shadow: none;
+  //border: 0;
+  /*transition: none;*/
+  display: none;
+}
+
+.keyboard-content .ML__keyboard.is-visible {
+  display: block;
+}
+
+.keyboard-content .keyboard-toolbar {
+  /*display: none;*/
+}
+
 
 .ML__keyboard {
   font-family: 'Roboto', sans-serif;

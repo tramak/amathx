@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import MathLive from 'mathlive';
+import React, { useState, useEffect, useRef } from 'react';
+import { MathfieldElement } from 'mathlive';
 
 import keyboards, { KeyboardsType } from './keyboard';
 import './mathfield.scss';
@@ -11,7 +11,10 @@ import './mathfield.scss';
 // const MathField: React.FC<MathFieldProps> = ({ type }) => {
 const MathField = ({ type }) => {
   // const field = useRef<HTMLInputElement>();
+  const [device, setDevice] = useState('mobile');
+  const [mfe, setMfe] = useState();
   const field = useRef();
+  const keyboard = useRef();
   // function updateOutput(mathfield) {
   //   const ast = MathLive.latexToAST(mathfield.$text());
   //   const result = evaluate(ast);
@@ -28,57 +31,76 @@ const MathField = ({ type }) => {
       return;
     }
 
-    const configKeyboard = keyboards[type || 'def'];
-    const keyboardContent = document.getElementById('keyboardContent') || document.body;
-    const sep = document.getElementById('sep');
-    const app = document.getElementById('app');
+    const configKeyboardType = keyboards[type || 'def'];
+    const configKeyboard = configKeyboardType[device] ? configKeyboardType[device]: configKeyboardType;
+    const keyboardContent = keyboard.current || document.body;
     const config = {
       smartFence: true,
       smartMode: true,
       virtualKeyboardMode: 'onfocus',
       toDOMElement: keyboardContent,
-      ...configKeyboard,
-      onContentDidChange: (mf) => {
-        console.log({ mf });
-        // const latex = mf.$text();
-        // document.getElementById('latex').innerHTML = escapeHtml(
-        //     latex
-        // );
-
-        //   const mathJSON = MathLive.latexToAST(latex);
-        //   document.getElementById('mathjson').innerHTML = escapeHtml(
-        //       JSON.stringify(mathJSON)
-        //  );
-      },
-      // onVirtualKeyboardToggle: (sender, visible, keyboardElement) => {
-        // if (!visible) {
-        //   sep.style.height = 0;
-        // }
-        //
-        // setTimeout(() => {
-        //   if (visible) {
-        //     sep.style.height = `${keyboardElement.offsetHeight}px`;
-        //
-        //     console.log({ sender, visible, keyboardElement }, {
-        //       elemRect: sender.element.getBoundingClientRect(),
-        //       appRect: app.getBoundingClientRect(),
-        //       scrollTop: app.scrollTop,
-        //     });
-        //   }
-        // });
-      // }
+      ...configKeyboard
     };
+    // MathLive.makeMathField(field.current, config);
 
-    MathLive.makeMathField(field.current, config);
-  }, [field]);
+    const mf = new MathfieldElement();
+    mf.setOptions(config);
+    field.current.appendChild(mf);
+    setMfe(mf);
+  }, [field, keyboard]);
+
+  // useEffect(() => {
+  //   const iterval = setTimeout(() => {
+  //     if (device === 'mobile') {
+  //       setDevice('desc');
+  //     } else {
+  //       setDevice('mobile');
+  //     }
+  //     // setDevice(d => {
+  //     //   console.log({ d });
+  //     // });
+  //   }, 3000);
+  //
+  //   return () => {
+  //     clearTimeout(iterval);
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const configKeyboardType = keyboards[type || 'def'];
+    if (mfe && configKeyboardType[device]) {
+      const configKeyboard = configKeyboardType[device] ? configKeyboardType[device]: configKeyboardType;
+      // const keyboardContent = keyboard.current || document.body;
+      const config = {
+        // smartFence: true,
+        // smartMode: true,
+        // virtualKeyboardMode: 'onfocus',
+        // toDOMElement: keyboardContent,
+        ...configKeyboard
+      };
+
+      console.log({
+        device,
+        customVirtualKeyboardLayers: config.customVirtualKeyboardLayers,
+        customVirtualKeyboards: config.customVirtualKeyboards,
+        virtualKeyboards: config.virtualKeyboards
+      });
+
+      mfe.setOptions({
+        customVirtualKeyboardLayers: config.customVirtualKeyboardLayers,
+        customVirtualKeyboards: config.customVirtualKeyboards,
+        virtualKeyboards: config.virtualKeyboards
+      });
+    }
+  }, [device]);
 
   return (
-    <div className="input-mathfield">
-      <div ref={field} className="mathfield" id="mf" tabIndex={0} />
-      <div id="latex" />
-      <div id="result" />
-      <div id="output" />
-    </div>
+    <>
+      <div className="input-mathfield">
+        <div ref={field} />
+      </div>
+      <div ref={keyboard} className="keyboard-content" />
+    </>
   );
 };
 

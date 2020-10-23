@@ -3,6 +3,7 @@ import { MathfieldElement } from 'mathlive';
 
 import keyboards, { KeyboardsType } from './keyboard';
 import './mathfield.scss';
+import useDeviceSize from '../../hooks/useDeviceSize';
 
 // interface MathFieldProps {
 //   type: keyof KeyboardsType;
@@ -11,20 +12,10 @@ import './mathfield.scss';
 // const MathField: React.FC<MathFieldProps> = ({ type }) => {
 const MathField = ({ type }) => {
   // const field = useRef<HTMLInputElement>();
-  const [device, setDevice] = useState('mobile');
+  const device = useDeviceSize();
   const [mfe, setMfe] = useState();
   const field = useRef();
   const keyboard = useRef();
-  // function updateOutput(mathfield) {
-  //   const ast = MathLive.latexToAST(mathfield.$text());
-  //   const result = evaluate(ast);
-  //   document.getElementById('result').innerHTML =
-  //       typeof result !== 'undefined' ? result.toString() : '';
-
-  //   document.getElementById('output').innerHTML = escapeHtml(
-  //       JSON.stringify(ast)
-  //   );
-  // }
 
   useEffect(() => {
     if (!field.current) {
@@ -32,7 +23,8 @@ const MathField = ({ type }) => {
     }
 
     const configKeyboardType = keyboards[type || 'def'];
-    const configKeyboard = configKeyboardType[device] ? configKeyboardType[device]: configKeyboardType;
+    const configKeyboard = configKeyboardType;
+    console.log({ configKeyboardType });
     const keyboardContent = keyboard.current || document.body;
     const config = {
       smartFence: true,
@@ -49,50 +41,50 @@ const MathField = ({ type }) => {
     setMfe(mf);
   }, [field, keyboard]);
 
-  // useEffect(() => {
-  //   const iterval = setTimeout(() => {
+  // function update() {
+  //   setTimeout(() => {
+  //     console.log(device, device === 'mobile');
   //     if (device === 'mobile') {
-  //       setDevice('desc');
+  //       console.log('set desk');
+  //       setDevice('desk');
   //     } else {
   //       setDevice('mobile');
   //     }
+  //
+  //     update();
   //     // setDevice(d => {
   //     //   console.log({ d });
   //     // });
   //   }, 3000);
+  // }
+
+  // useEffect(() => {
+  //   const configKeyboardType = keyboards[type || 'def'];
+  //   if (mfe && configKeyboardType[device]) {
+  //     const configKeyboard = configKeyboardType[device] ? configKeyboardType[device]: configKeyboardType;
+  //     // const keyboardContent = keyboard.current || document.body;
+  //     const config = {
+  //       // smartFence: true,
+  //       // smartMode: true,
+  //       // virtualKeyboardMode: 'onfocus',
+  //       // toDOMElement: keyboardContent,
+  //       ...configKeyboard
+  //     };
   //
-  //   return () => {
-  //     clearTimeout(iterval);
-  //   };
-  // }, []);
-
-  useEffect(() => {
-    const configKeyboardType = keyboards[type || 'def'];
-    if (mfe && configKeyboardType[device]) {
-      const configKeyboard = configKeyboardType[device] ? configKeyboardType[device]: configKeyboardType;
-      // const keyboardContent = keyboard.current || document.body;
-      const config = {
-        // smartFence: true,
-        // smartMode: true,
-        // virtualKeyboardMode: 'onfocus',
-        // toDOMElement: keyboardContent,
-        ...configKeyboard
-      };
-
-      console.log({
-        device,
-        customVirtualKeyboardLayers: config.customVirtualKeyboardLayers,
-        customVirtualKeyboards: config.customVirtualKeyboards,
-        virtualKeyboards: config.virtualKeyboards
-      });
-
-      mfe.setOptions({
-        customVirtualKeyboardLayers: config.customVirtualKeyboardLayers,
-        customVirtualKeyboards: config.customVirtualKeyboards,
-        virtualKeyboards: config.virtualKeyboards
-      });
-    }
-  }, [device]);
+  //     console.log({
+  //       device,
+  //       customVirtualKeyboardLayers: config.customVirtualKeyboardLayers,
+  //       customVirtualKeyboards: config.customVirtualKeyboards,
+  //       virtualKeyboards: config.virtualKeyboards
+  //     });
+  //
+  //     mfe.setOptions({
+  //       customVirtualKeyboardLayers: config.customVirtualKeyboardLayers,
+  //       customVirtualKeyboards: config.customVirtualKeyboards,
+  //       virtualKeyboards: config.virtualKeyboards
+  //     });
+  //   }
+  // }, [device]);
 
   return (
     <>

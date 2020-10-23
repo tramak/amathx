@@ -80,18 +80,30 @@ function makeKeyboardLayer(keyboardLayer) {
     return tempLayer;
   }
 
-  tempLayer = '<div class="rows">';
+  tempLayer += '<div class="keyboard-content-rows">';
+  // tempLayer += `
+  //   <div class="keyboard-content-rows__tabs">
+  //     <div class="keyboard-content-rows__tab">
+  //       Первый таб
+  //     </div>
+  //     <div class="keyboard-content-rows__tab">
+  //       Второй таб
+  //     </div>
+  //   </div>
+  // `;
+  tempLayer += '<div class="rows">';
   tempLayer += makeKeyboardLayerBlocks(keyboardLayer.blocks);
 
-  if (keyboardLayer.stillBlocks) {
-    tempLayer += `
-      <div class="keyboard__more">
-        <span class="keyboard__still">Ещё</span>
-        <span class="keyboard__rollup">Свернуть</span>
-      </div>
-    `;
-    tempLayer += makeKeyboardLayerBlocks(keyboardLayer.stillBlocks);
-  }
+  // if (keyboardLayer.stillBlocks) {
+  //   tempLayer += `
+  //     <div class="keyboard__more">
+  //       <span class="keyboard__still">Ещё</span>
+  //       <span class="keyboard__rollup">Свернуть</span>
+  //     </div>
+  //   `;
+  //   tempLayer += makeKeyboardLayerBlocks(keyboardLayer.stillBlocks);
+  // }
+  tempLayer += '</div>';
   tempLayer += '</div>';
 
   return tempLayer;
@@ -111,13 +123,57 @@ function makeKeyboardItem(config) {
   };
 }
 
+function makeCustomKeyboard(configItem) {
+  const layers = configItem.customVirtualKeyboardLayers;
+  const keyboardIDs = configItem.virtualKeyboards;
+  const keyboardList = keyboardIDs.replace(/\s+/g, ' ').split(' ');
+
+  // desk.customVirtualKeyboardLayers.baselayer
+  const keyboards = configItem.customVirtualKeyboards;
+  const titles = [];
+  const blocks = [];
+
+  keyboardList.forEach(keyboard => {
+    const keyboardLayer = keyboards[keyboard];
+
+    titles.push(`<div>${keyboardLayer.label}</div>`);
+    blocks.push(`<div>${layers[keyboardLayer.layer]}</div>`);
+  });
+
+  return `
+    <div>
+        <div>${titles.join('')}</div>
+        <div>${blocks.join('')}</div>
+    </div>
+  `;
+}
+
+function composeKeyboard(desk, mobile) {
+  const customKeyboardDesk = makeCustomKeyboard(desk);
+  const customKeyboardMobile = makeCustomKeyboard(mobile);
+
+  return `
+    <div class="custom-keyboard_desk">${customKeyboardDesk}</div>
+    <div class="custom-keyboard_mobile">${customKeyboardMobile}</div>
+  `;
+}
+
 export default function makeKeyboard(config) {
   const desk = makeKeyboardItem(config.desk);
   const mobile = makeKeyboardItem(config.mobile);
 
   return {
-    desk,
-    mobile
+    customVirtualKeyboardLayers: {
+      baseLayer: composeKeyboard(desk, mobile)
+    },
+    customVirtualKeyboards: {
+      base: {
+        layer: 'baseLayer',
+      },
+    },
+    virtualKeyboards: 'base'
+    // desk,
+    // mobile
   };
 }
 
